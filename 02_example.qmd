@@ -3,19 +3,47 @@ title: "Example"
 format: html
 ---
 
-## Quarto
+# brms example
 
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+![](images/Screen%20Shot%202023-11-01%20at%201.09.29%20PM.png)
 
-## Running Code
+We are going to work with Allison Horst's penguins dataset. Check out Allison's GitHub for more information: <https://github.com/allisonhorst/penguins>.
 
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+## Load in data
 
-```{r}
-1 + 1
+```{r data upload}
+install.packages("palmerpenguins")
+library(palmerpenguins)
+
+# Let's load in the "penguins" dataset
+d <- penguins
 ```
 
-You can add options to executable code like this 
+The dataset contains observations from 344 penguins in the Palmer Archipelago, Antartica, and the dataset consists of the following information:
+
+-   **species**: penguin species (Chinstrap, Adélie, or Gentoo)
+
+-   **culmen_length_mm**: culmen length (mm)
+
+-   **culmen_depth_mm**: culmen depth (mm)
+
+-   **flipper_length_mm**: flipper length (mm)
+
+-   **body_mass_g**: body mass (g)
+
+-   **island**: island name (Dream, Torgersen, or Biscoe) in the Palmer Archipelago (Antarctica)
+
+-   **sex**: penguin sex
+
+## Setting up the model 
+
+Say we are interested in seeing if there is a correlation between flipper length and body mass, and if this correlation that differs between species and islands.
+
+```{r}
+
+```
+
+You can add options to executable code like this
 
 ```{r}
 #| echo: false

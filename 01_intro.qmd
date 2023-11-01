@@ -1,25 +1,87 @@
 ---
 title: "Introduction"
 format: html
+editor: 
+  markdown: 
+    wrap: 72
 ---
 
-## Quarto
+## brms 
 
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+brms (short for Bayesian Regression Models using 'Stan') is a package
+that allows for user friendly specification of Bayesian models. The
+package was developed by Paul-Christian Bürkner. If you are mostly
+familiar with linear regression of the frequentist sort, you are in
+luck: the formula syntax in brms is *very* similar to that in lme4! The
+brms
+[README](https://cran.r-project.org/web/packages/brms/readme/README.html)
+file links to several resources including extensive package
+documentation, vignettes, and forum discussions
 
-## Running Code
+If you are new to Bayesian stats or are in need of a little brush up,
+check out this [Bayesian
+Primer](https://www.nature.com/articles/s43586-020-00001-2) by Van de
+Schoot et al. (2021).
 
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+## Install brms
 
-```{r}
-1 + 1
+Installing brms is pretty straightforward
+
+```{r install}
+## Latest release from CRAN
+install.packages("brms")
+
+## Or the latest development version from GitHub
+devtools::install_github("paul-buerkner/brms")
 ```
 
-You can add options to executable code like this 
+## What can it do?
 
-```{r}
-#| echo: false
-2 * 2
-```
+### Model specification
 
-The `echo: false` option disables the printing of code (only output is displayed).
+`brm` is the modelling function where you can specify anything that may
+be relevant to your model (e.g., the response distribution, priors,
+group-level factors, number of chains, iterations, etc.).
+
+Some of the core arguments you will need to specify are:
+
+1.  *formula*: this is where you specify your response and predictor
+    variables of interest (e.g., y \~ x). This is also where you will
+    specify your random effects (e.g., y \~ x1 + (1\|x2)
+2.  *data:* specify your dataframe
+3.  *family*: brms can handle a wide range of response distributions
+    linear, count data, survival, response times, ordinal,
+    zero-inflated, self-defined mixture models and much much more! This
+    is also where you specify your *link* argument
+
+Other arguments you might want to specify:
+
+1.  *prior*: specify the prior distributions you would like for your
+    population-level and group-level variables. You are also not
+    restricted to just normal distributions and specify different types
+    including uniform, Cauchy, Gamma, etc. If you do not specify your
+    priors, the model assumes the default prior distribution \[look up
+    what this is again\].
+2.  *warmup*: number of burn in iterations to help model find stable
+    sampling space (default is iter/2)
+3.  *iter:* number of total iterations per chain (default is 2000)
+4.  *chains*: number of markov chains you would like to run (default is
+    4)
+5.  *cores*: number of cores to use when chains are running (default is
+    1), but you may want to specify more if your computer has
+    capability. You can check how many cores you have by using
+    parallel::detectCores()
+6.  file: you can tell the model where to save its results (e.g., file =
+    paste0(model,"/m_results")
+
+## How does it work?
+
+### Model fitting procedure
+
+![](images/Screen%20Shot%202023-11-01%20at%201.01.31%20PM.png)
+
+Figure 1. brms model fitting procedure (Burkner xxxx)
+
+## References
+
+https://cran.r-project.org/web/packages/brms/readme/README.html
