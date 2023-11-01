@@ -82,6 +82,7 @@ Other arguments you might want to specify:
 
 Figure 1. brms model fitting procedure (Burkner xxxx)
 
-## References
+## Resources
 
-https://cran.r-project.org/web/packages/brms/readme/README.html
+[Statistical rethinking with brms
+tutorial](https://bookdown.org/content/4857/)

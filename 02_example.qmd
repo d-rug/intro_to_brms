@@ -5,49 +5,10 @@ format: html
 
 # brms example
 
-![](images/Screen%20Shot%202023-11-01%20at%201.09.29%20PM.png)
-
-We are going to work with Allison Horst's penguins dataset. Check out Allison's GitHub for more information: <https://github.com/allisonhorst/penguins>.
-
 ## Load in data
-
-```{r data upload}
-install.packages("palmerpenguins")
-library(palmerpenguins)
-
-# Let's load in the "penguins" dataset
-d <- penguins
-```
-
-The dataset contains observations from 344 penguins in the Palmer Archipelago, Antartica, and the dataset consists of the following information:
-
--   **species**: penguin species (Chinstrap, Adélie, or Gentoo)
-
--   **culmen_length_mm**: culmen length (mm)
-
--   **culmen_depth_mm**: culmen depth (mm)
-
--   **flipper_length_mm**: flipper length (mm)
-
--   **body_mass_g**: body mass (g)
-
--   **island**: island name (Dream, Torgersen, or Biscoe) in the Palmer Archipelago (Antarctica)
-
--   **sex**: penguin sex
 
 ## Setting up the model 
 
-Say we are interested in seeing if there is a correlation between flipper length and body mass, and if this correlation that differs between species and islands.
-
 ```{r}
 
 ```
-
-You can add options to executable code like this
-
-```{r}
-#| echo: false
-2 * 2
-```
-
-The `echo: false` option disables the printing of code (only output is displayed).
