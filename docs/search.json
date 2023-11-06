@@ -7,60 +7,46 @@
     "text": "Overview\nWelcome to this mini-workshop on brms! This reader covers the packages basics, how it works under the hood, and an example for how to use the package.\nGoals:\n\nLearn about brms capabilities\nGain an understanding of how Stan integrates with brms\nRun a generalized linear mixed-model with the package\n\nNo prerequisites required, however it would be helpful to have an general understanding of Bayesian statistics."
   },
   {
-    "objectID": "01_intro.html#brms",
-    "href": "01_intro.html#brms",
-    "title": "Introduction",
-    "section": "brms",
-    "text": "brms\nbrms (short for Bayesian Regression Models using ‘Stan’) is a package that allows for user friendly specification of Bayesian models. The package was developed by Paul-Christian Bürkner. If you are mostly familiar with linear regression of the frequentist sort, you are in luck: the formula syntax in brms is very similar to that in lme4! The brms README file links to several resources including extensive package documentation, vignettes, and forum discussions\nIf you are new to Bayesian stats or are in need of a little brush up, check out this Bayesian Primer by Van de Schoot et al. (2021)."
+    "objectID": "01_intro.html#bayesian-stats-is-much-more-than-just-fitting-a-model",
+    "href": "01_intro.html#bayesian-stats-is-much-more-than-just-fitting-a-model",
+    "title": "Introduction to the package",
+    "section": "Bayesian stats is much more than just fitting a model",
+    "text": "Bayesian stats is much more than just fitting a model\nBayesian statistics require several steps with key decision-making moments along the way that could greatly impact your analysis. Gelman et al. (2020) outlines a workflow that helps navigate through the critical decision points:\n\nPick an initial model\nFit the model\nValidate computation\nAddress computational issues\nEvaluate and use model OR modify the model\nCompare models"
+  },
+  {
+    "objectID": "01_intro.html#brms---a-package-that-can-help-you-throughout-your-bayesian-workflow",
+    "href": "01_intro.html#brms---a-package-that-can-help-you-throughout-your-bayesian-workflow",
+    "title": "Introduction to the package",
+    "section": "brms - a package that can help you throughout your Bayesian workflow!",
+    "text": "brms - a package that can help you throughout your Bayesian workflow!\nbrms (short for Bayesian Regression Models using ‘Stan’) is a package that allows for user friendly specification of Bayesian models. The package was developed by Paul-Christian Bürkner. If you are mostly familiar with linear regression of the frequentist sort, you are in luck: the formula syntax in brms is very similar to that in lme4! The brms README file links to several resources including extensive package documentation, vignettes, and forum discussions\nIf you are new to Bayesian stats or are in need of a little brush up, check out this Bayesian Primer by Van de Schoot et al. (2021)."
   },
   {
     "objectID": "01_intro.html#install-brms",
     "href": "01_intro.html#install-brms",
-    "title": "Introduction",
+    "title": "Introduction to the package",
     "section": "Install brms",
     "text": "Install brms\nInstalling brms is pretty straightforward\n\n## Latest release from CRAN\n# install.packages(\"brms\")\n\n## Or the latest development version from GitHub\n# devtools::install_github(\"paul-buerkner/brms\")"
   },
   {
-    "objectID": "01_intro.html#what-can-it-do",
-    "href": "01_intro.html#what-can-it-do",
-    "title": "Introduction",
-    "section": "What can it do?",
-    "text": "What can it do?\n\nModel specification\nbrm is the modelling function where you can specify anything that may be relevant to your model (e.g., the response distribution, priors, group-level factors, number of chains, iterations, etc.).\nSome of the core arguments you will need to specify are:\n\nformula: this is where you specify your response and predictor variables of interest (e.g., y ~ x). This is also where you will specify your random effects (e.g., y ~ x1 + (1|x2)\ndata: specify your dataframe\nfamily: brms can handle a wide range of response distributions linear, count data, survival, response times, ordinal, zero-inflated, self-defined mixture models and much much more! This is also where you specify your link argument\n\nOther arguments you might want to specify:\n\nprior: specify the prior distributions you would like for your population-level and group-level variables. You are also not restricted to just normal distributions and specify different types including uniform, Cauchy, Gamma, etc. If you do not specify your priors, the model assumes an uninformed flat prior distribution [double check this].\nwarmup: number of burn in iterations to help model find stable sampling space (default is iter/2)\niter: number of total iterations per chain (default is 2000)\nchains: number of markov chains you would like to run (default is\n\n\n\ncores: number of cores to use when chains are running (default is 1), but you may want to specify more if your computer has capability. You can check how many cores you have by using parallel::detectCores()\ncontrol: adjust the sampling behavior of the model. I’ve mostly used this to help lower the number of divergent transitions (e.g., control = list(adapt_delta(x=.9)))\nfile: you can tell the model where to save its results (e.g., file = paste0(model,“/m_results”)"
-  },
-  {
-    "objectID": "01_intro.html#how-does-it-work",
-    "href": "01_intro.html#how-does-it-work",
-    "title": "Introduction",
-    "section": "How does it work?",
-    "text": "How does it work?\n\nModel fitting procedure\n\nFigure 1. brms model fitting procedure (Burkner xxxx)"
-  },
-  {
-    "objectID": "01_intro.html#evaluating-the-results",
-    "href": "01_intro.html#evaluating-the-results",
-    "title": "Introduction",
-    "section": "Evaluating the results",
-    "text": "Evaluating the results\nCheck out your model results: the summary function will spit out key model information like the family, formula, data and number of observations used in the model, number of samples, WAIC score, population-level effects and group-level effects (if you have any) with their respective estimates, error, 95% confidence interval, effective sample size, and Rhat score.\nThere are several functions built into brms that are useful for evaluating your model. Most commonly, I will use the following functions to assess my model:\n\nLeave-one-out cross-validation test on your model with loo\nPosterior predictive check with the pp_check. You can specify several different types of checks. The most common ones I use are: “dens_overlay” and “intervals_grouped” if I am running a mixed model.\nTrace plot for your model using mcmc_plot a function in the bayesplot package that is built into the brms package\nThere are several functions built in to help assess and visualize the posterior predictive distribution."
-  },
-  {
-    "objectID": "01_intro.html#other-model-options-in-brms",
-    "href": "01_intro.html#other-model-options-in-brms",
-    "title": "Introduction",
-    "section": "Other model options in brms",
-    "text": "Other model options in brms\nbrm_multiple for when you have multiple datasets that you would like to run your model over"
+    "objectID": "01_intro.html#brms-the-bayesian-workflow",
+    "href": "01_intro.html#brms-the-bayesian-workflow",
+    "title": "Introduction to the package",
+    "section": "brms & the Bayesian workflow",
+    "text": "brms & the Bayesian workflow\n\n1. Pick an initial model\nbrm is the modelling function where you can specify anything that may be relevant to your model (e.g., the response distribution, priors, group-level factors, number of chains, iterations, etc.).\nSome of the core arguments you will need to specify are:\n\nformula: this is where you specify your response and predictor variables of interest (e.g., y ~ x). This is also where you will specify your random effects (e.g., y ~ x1 + (1|x2)\ndata: specify your dataframe\nfamily: brms can handle a wide range of response distributions linear, count data, survival, response times, ordinal, zero-inflated, self-defined mixture models and much much more! This is also where you specify your link argument\n\nOther arguments you might want to specify:\n\nprior: specify the prior distributions you would like for your population-level and group-level variables. You are also not restricted to just normal distributions and specify different types including uniform, Cauchy, Gamma, etc. If you do not specify your priors, the model assumes an uninformed flat prior distribution [double check this].\nwarmup: number of burn in iterations to help model find stable sampling space (default is iter/2)\niter: number of total iterations per chain (default is 2000)\nchains: number of markov chains you would like to run (default is\n\n\n\ncores: number of cores to use when chains are running (default is 1), but you may want to specify more if your computer has capability. You can check how many cores you have by using parallel::detectCores()\ncontrol: adjust the sampling behavior of the model. I’ve mostly used this to help lower the number of divergent transitions (e.g., control = list(adapt_delta(x=.9)))\nfile: you can tell the model where to save its results (e.g., file = paste0(model,“/m_results”)\n\nAnother model function is brm_multiple for when you have multiple datasets that you would like to run your model over. Specifically, this is helpful if you missing data and your dataset would benefit from multiple imputation. brms interfaces nicely with the mice package which allows you to pass multiple imputed datasets into your model which then combines the posteriors draws into one model result. You can then run the rest of the brms post-processing methods as you typically would.\n\n\n2. Fit the model\n\nFigure 1. brms model fitting procedure (Burkner xxxx)\n\n\n3. Validate computation\nThis part of the workflow stresses the use of simulated data to make sure the model takes a reasonable length of time to run & passes convergence diagnostics.\nCheck out your model results: the summary function will spit out key model information like the family, formula, data and number of observations used in the model, number of samples, WAIC score, population-level effects and group-level effects (if you have any) with their respective estimates, error, 95% confidence interval, effective sample size, and Rhat score.\nEffective sample size and Rhat score are two default metrics of convergence. If your effective sample size is much lower than your number of iterations there could be efficiency issues in your chains. Secondly, if your Rhat score is > 1, then this indicates some convergence issues and therefore may not have reliable results.\n\n\n4. Address computational issues\nIn general, it is helpful to start with a simple version of the model to diagnose exactly where you are running into issues. Within your argument specification in the brm function, you can play around with the following:\n\nIf your model is taking a long time to run, try a smaller simulated dataset or a subset of your data, lower the number of iter from the default (which is 2000), or add in more informative priors than you had previously by adjusting the prior argument.\nIf your model is having convergence issues, you can try adjusting the control function to be greater than the default, which is .8, up to 1.\n\n\n\n5. Evaluate and use model OR modify the model\nThere are a couple of functions from the bayesplot package that interface with brms to evaluate your model. Most commonly, I will use the following functions to assess my model:\n\nPosterior predictive checking is one way to see how your model results compare with your observed data. You can run a posterior predictive check with the pp_check and specify several different types of checks. The most common ones I use are: “dens_overlay” and “intervals_grouped” if I am running a mixed model.\nTrace plot for your model using mcmc_plot to see if there was adequate chain mixing.\n\nAnother good test is leave-one-out cross-validation (LOOCV). LOOCV essentially checks the predictive ability of your model when part of the data is left out. This is helpful for understanding the influence of certain observations on your model fit. You can test on your model with loo.\n\n\n6. Compare models\nKeep all your model iterations. You can think of the Bayesian workflow as a process, where anything you do in this workflow is information about your data analysis.\nbrms aims to make it straightforward to adjust aspects of your model (e.g., model equation, priors, number of iterations) so that you can make comparisons between them. Once you have some models that you would like to compare, you can run loo_compare to see had the best predictive ability or run your other evaluation checks to compare fit."
   },
   {
     "objectID": "01_intro.html#resources",
     "href": "01_intro.html#resources",
-    "title": "Introduction",
+    "title": "Introduction to the package",
     "section": "Resources",
-    "text": "Resources\nStatistical rethinking with brms tutorial\nGelman et al. 2020 - Bayesian Workflow"
+    "text": "Resources\nBurkner, Paul-Christian (2023). brms. https://paul-buerkner.github.io/brms/\nGelman, Andrew, Vehtari, Aki, Simpson, Daniel, Margossian, Charles C., Carpenter, Bobb, Yao, Yuling, Kennedy, Lauren, Gabry, Johah, Burkner, Paul-Christian, and Modrak, Mark (2020). Bayesian Workflow. arXiv. https://doi.org/10.48550/arXiv.2011.01808\nKurz, A Solomon (2019). Statistical Rethinking with brms, ggplot2, and the tidyverse. https://bookdown.org/ajkurz/Statistical_Rethinking_recoded/\nMcElreath, R. (2016). Statistical rethinking: A Bayesian course with examples in R and Stan. Chapman & Hall/CRC Press. https://xcelab.net/rm/statistical-rethinking/"
   },
   {
     "objectID": "02_example.html",
     "href": "02_example.html",
     "title": "Example",
     "section": "",
-    "text": "brms example"
+    "text": "brms example\nWe are going to run through an example using brms."
   },
   {
     "objectID": "02_example.html#load-in-data",
