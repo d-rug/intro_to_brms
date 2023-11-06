@@ -2,36 +2,78 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "YOUR WORKSHOP TITLE",
+    "title": "Introduction to brms",
     "section": "",
-    "text": "Overview\nYOUR DESCRIPTION, LEARNING GOALS, PREREQUISITES, ETC"
+    "text": "Overview\nWelcome to this mini-workshop on brms! This reader covers the packages basics, how it works under the hood, and an example for how to use the package.\nGoals:\n\nLearn about brms capabilities\nGain an understanding of how Stan integrates with brms\nRun a generalized linear mixed-model with the package\n\nNo prerequisites required, however it would be helpful to have an general understanding of Bayesian statistics."
   },
   {
-    "objectID": "01_intro.html#quarto",
-    "href": "01_intro.html#quarto",
+    "objectID": "01_intro.html#brms",
+    "href": "01_intro.html#brms",
     "title": "Introduction",
-    "section": "Quarto",
-    "text": "Quarto\nQuarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see https://quarto.org."
+    "section": "brms",
+    "text": "brms\nbrms (short for Bayesian Regression Models using ‘Stan’) is a package that allows for user friendly specification of Bayesian models. The package was developed by Paul-Christian Bürkner. If you are mostly familiar with linear regression of the frequentist sort, you are in luck: the formula syntax in brms is very similar to that in lme4! The brms README file links to several resources including extensive package documentation, vignettes, and forum discussions\nIf you are new to Bayesian stats or are in need of a little brush up, check out this Bayesian Primer by Van de Schoot et al. (2021)."
   },
   {
-    "objectID": "01_intro.html#running-code",
-    "href": "01_intro.html#running-code",
+    "objectID": "01_intro.html#install-brms",
+    "href": "01_intro.html#install-brms",
     "title": "Introduction",
-    "section": "Running Code",
-    "text": "Running Code\nWhen you click the Render button a document will be generated that includes both content and the output of embedded code. You can embed code like this:\n\n1 + 1\n\n[1] 2\n\n\nYou can add options to executable code like this\n\n\n[1] 4\n\n\nThe echo: false option disables the printing of code (only output is displayed)."
+    "section": "Install brms",
+    "text": "Install brms\nInstalling brms is pretty straightforward\n\n## Latest release from CRAN\n# install.packages(\"brms\")\n\n## Or the latest development version from GitHub\n# devtools::install_github(\"paul-buerkner/brms\")"
   },
   {
-    "objectID": "02_example.html#quarto",
-    "href": "02_example.html#quarto",
-    "title": "Example",
-    "section": "Quarto",
-    "text": "Quarto\nQuarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see https://quarto.org."
+    "objectID": "01_intro.html#what-can-it-do",
+    "href": "01_intro.html#what-can-it-do",
+    "title": "Introduction",
+    "section": "What can it do?",
+    "text": "What can it do?\n\nModel specification\nbrm is the modelling function where you can specify anything that may be relevant to your model (e.g., the response distribution, priors, group-level factors, number of chains, iterations, etc.).\nSome of the core arguments you will need to specify are:\n\nformula: this is where you specify your response and predictor variables of interest (e.g., y ~ x). This is also where you will specify your random effects (e.g., y ~ x1 + (1|x2)\ndata: specify your dataframe\nfamily: brms can handle a wide range of response distributions linear, count data, survival, response times, ordinal, zero-inflated, self-defined mixture models and much much more! This is also where you specify your link argument\n\nOther arguments you might want to specify:\n\nprior: specify the prior distributions you would like for your population-level and group-level variables. You are also not restricted to just normal distributions and specify different types including uniform, Cauchy, Gamma, etc. If you do not specify your priors, the model assumes an uninformed flat prior distribution [double check this].\nwarmup: number of burn in iterations to help model find stable sampling space (default is iter/2)\niter: number of total iterations per chain (default is 2000)\nchains: number of markov chains you would like to run (default is\n\n\n\ncores: number of cores to use when chains are running (default is 1), but you may want to specify more if your computer has capability. You can check how many cores you have by using parallel::detectCores()\ncontrol: adjust the sampling behavior of the model. I’ve mostly used this to help lower the number of divergent transitions (e.g., control = list(adapt_delta(x=.9)))\nfile: you can tell the model where to save its results (e.g., file = paste0(model,“/m_results”)"
   },
   {
-    "objectID": "02_example.html#running-code",
-    "href": "02_example.html#running-code",
+    "objectID": "01_intro.html#how-does-it-work",
+    "href": "01_intro.html#how-does-it-work",
+    "title": "Introduction",
+    "section": "How does it work?",
+    "text": "How does it work?\n\nModel fitting procedure\n\nFigure 1. brms model fitting procedure (Burkner xxxx)"
+  },
+  {
+    "objectID": "01_intro.html#evaluating-the-results",
+    "href": "01_intro.html#evaluating-the-results",
+    "title": "Introduction",
+    "section": "Evaluating the results",
+    "text": "Evaluating the results\nCheck out your model results: the summary function will spit out key model information like the family, formula, data and number of observations used in the model, number of samples, WAIC score, population-level effects and group-level effects (if you have any) with their respective estimates, error, 95% confidence interval, effective sample size, and Rhat score.\nThere are several functions built into brms that are useful for evaluating your model. Most commonly, I will use the following functions to assess my model:\n\nLeave-one-out cross-validation test on your model with loo\nPosterior predictive check with the pp_check. You can specify several different types of checks. The most common ones I use are: “dens_overlay” and “intervals_grouped” if I am running a mixed model.\nTrace plot for your model using mcmc_plot a function in the bayesplot package that is built into the brms package\nThere are several functions built in to help assess and visualize the posterior predictive distribution."
+  },
+  {
+    "objectID": "01_intro.html#other-model-options-in-brms",
+    "href": "01_intro.html#other-model-options-in-brms",
+    "title": "Introduction",
+    "section": "Other model options in brms",
+    "text": "Other model options in brms\nbrm_multiple for when you have multiple datasets that you would like to run your model over"
+  },
+  {
+    "objectID": "01_intro.html#resources",
+    "href": "01_intro.html#resources",
+    "title": "Introduction",
+    "section": "Resources",
+    "text": "Resources\nStatistical rethinking with brms tutorial\nGelman et al. 2020 - Bayesian Workflow"
+  },
+  {
+    "objectID": "02_example.html",
+    "href": "02_example.html",
     "title": "Example",
-    "section": "Running Code",
-    "text": "Running Code\nWhen you click the Render button a document will be generated that includes both content and the output of embedded code. You can embed code like this:\n\n1 + 1\n\n[1] 2\n\n\nYou can add options to executable code like this\n\n\n[1] 4\n\n\nThe echo: false option disables the printing of code (only output is displayed)."
+    "section": "",
+    "text": "brms example"
+  },
+  {
+    "objectID": "02_example.html#load-in-data",
+    "href": "02_example.html#load-in-data",
+    "title": "Example",
+    "section": "Load in data",
+    "text": "Load in data"
+  },
+  {
+    "objectID": "02_example.html#setting-up-the-model",
+    "href": "02_example.html#setting-up-the-model",
+    "title": "Example",
+    "section": "Setting up the model",
+    "text": "Setting up the model"
   }
 ]

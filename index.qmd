@@ -7,4 +7,15 @@ format:
 
 # Overview {.unnumbered}
 
-YOUR DESCRIPTION, LEARNING GOALS, PREREQUISITES, ETC
+Welcome to this mini-workshop on brms! This reader covers the packages basics, how it works under the hood, and an example for how to use the package. 
+
+Goals: 
+  
+  - Learn about brms capabilities 
+  
+  - Gain an understanding of how Stan integrates with brms 
+  
+  - Run a generalized linear mixed-model with the package
+
+No prerequisites required, however it would be helpful to have an general understanding of Bayesian statistics. 
+

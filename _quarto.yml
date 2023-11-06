@@ -3,12 +3,12 @@ project:
   output-dir: docs
 
 book:
-  title: "YOUR WORKSHOP TITLE"
-  author: "[YOUR NAME]"
-  date: "DATE"
+  title: "Introduction to brms"
+  author: "Tara Pozzi and Wesley Brooks"
+  date: "November 8th, 2023"
   
   search: true
-  repo-url: https://github.com/d-rug/YOUR_REPO
+  repo-url: https://github.com/d-rug/intro_to_brms
   downloads: [pdf]
   chapters:
     - index.qmd

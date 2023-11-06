@@ -29,10 +29,10 @@ Installing brms is pretty straightforward
 
 ```{r install}
 ## Latest release from CRAN
-install.packages("brms")
+# install.packages("brms")
 
 ## Or the latest development version from GitHub
-devtools::install_github("paul-buerkner/brms")
+# devtools::install_github("paul-buerkner/brms")
 ```
 
 ## What can it do?
