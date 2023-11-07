@@ -199,7 +199,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <ul>
   <li><a href="#brms---a-package-that-can-help-you-throughout-your-bayesian-workflow" id="toc-brms---a-package-that-can-help-you-throughout-your-bayesian-workflow" class="nav-link active" data-scroll-target="#brms---a-package-that-can-help-you-throughout-your-bayesian-workflow">brms - a package that can help you throughout your Bayesian workflow!</a></li>
   <li><a href="#install-brms" id="toc-install-brms" class="nav-link" data-scroll-target="#install-brms">Install <code>brms</code></a></li>
-  <li><a href="#brms-the-bayesian-workflow" id="toc-brms-the-bayesian-workflow" class="nav-link" data-scroll-target="#brms-the-bayesian-workflow">brms &amp; the Bayesian workflow</a>
+  <li><a href="#brms-the-bayesian-workflow" id="toc-brms-the-bayesian-workflow" class="nav-link" data-scroll-target="#brms-the-bayesian-workflow"><code>brms</code> &amp; the Bayesian workflow</a>
   <ul class="collapse">
   <li><a href="#pick-an-initial-model" id="toc-pick-an-initial-model" class="nav-link" data-scroll-target="#pick-an-initial-model">1. Pick an initial model</a></li>
   <li><a href="#fit-the-model" id="toc-fit-the-model" class="nav-link" data-scroll-target="#fit-the-model">2. Fit the model</a></li>
@@ -249,35 +249,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </section>
 <section id="brms-the-bayesian-workflow" class="level2">
-<h2 class="anchored" data-anchor-id="brms-the-bayesian-workflow">brms &amp; the Bayesian workflow</h2>
+<h2 class="anchored" data-anchor-id="brms-the-bayesian-workflow"><code>brms</code> &amp; the Bayesian workflow</h2>
 <section id="pick-an-initial-model" class="level3">
 <h3 class="anchored" data-anchor-id="pick-an-initial-model">1. Pick an initial model</h3>
 <p><code>brm</code> is the modelling function where you can specify anything that may be relevant to your model (e.g., the response distribution, priors, group-level factors, number of chains, iterations, etc.).</p>
 <p>Some of the core arguments you will need to specify are:</p>
 <ol type="1">
-<li><em>formula</em>: this is where you specify your response and predictor variables of interest (e.g., y ~ x). This is also where you will specify your random effects (e.g., y ~ x1 + (1|x2)</li>
-<li><em>data:</em> specify your dataframe</li>
-<li><em>family</em>: brms can handle a wide range of response distributions linear, count data, survival, response times, ordinal, zero-inflated, self-defined mixture models and much much more! This is also where you specify your <em>link</em> argument</li>
+<li><code>formula</code>: this is where you specify your response and predictor variables of interest (e.g., y ~ x). This is also where you will specify your random effects (e.g., y ~ x1 + (1|x2)</li>
+<li><code>data</code>: specify your dataframe</li>
+<li><code>family</code>: brms can handle a wide range of response distributions linear, count data, survival, response times, ordinal, zero-inflated, self-defined mixture models and much much more! This is also where you specify your <code>link</code> argument</li>
 </ol>
 <p>Other arguments you might want to specify:</p>
 <ol type="1">
-<li><em>prior</em>: specify the prior distributions you would like for your population-level and group-level variables. You are also not restricted to just normal distributions and specify different types including uniform, Cauchy, Gamma, etc. If you do not specify your priors, the model assumes an uninformed flat prior distribution [double check this].</li>
-<li><em>warmup</em>: number of burn in iterations to help model find stable sampling space (default is iter/2)</li>
-<li><em>iter:</em> number of total iterations per chain (default is 2000)</li>
-<li><em>chains</em>: number of markov chains you would like to run (default is
-<ol start="4" type="1">
-<li></li>
-</ol></li>
-<li><em>cores</em>: number of cores to use when chains are running (default is 1), but you may want to specify more if your computer has capability. You can check how many cores you have by using parallel::detectCores()</li>
-<li><em>control:</em> adjust the sampling behavior of the model. I’ve mostly used this to help lower the number of divergent transitions (e.g., control = list(adapt_delta(x=.9)))</li>
-<li><em>file:</em> you can tell the model where to save its results (e.g., file = paste0(model,“/m_results”)</li>
+<li><code>prior</code>: specify the prior distributions you would like for your population-level and group-level variables. You are also not restricted to just normal distributions and specify different types including uniform, Cauchy, Gamma, etc. If you do not specify your priors, the model assumes an uninformed flat prior distribution [double check this].</li>
+<li><code>warmup</code>: number of burn in iterations to help model find stable sampling space (default is iter/2)</li>
+<li><code>iter:</code> number of total iterations per chain (default is 2000)</li>
+<li><code>chains</code>: number of markov chains you would like to run (default is 4)</li>
+<li><code>cores</code>: number of cores to use when chains are running (default is 1), but you may want to specify more if your computer has capability. You can check how many cores you have by using parallel::detectCores()</li>
+<li><code>control:</code> adjust the sampling behavior of the model. I’ve mostly used this to help lower the number of divergent transitions (e.g., control = list(adapt_delta(x=.9)))</li>
+<li><code>file:</code> you can tell the model where to save its results (e.g., file = paste0(model,“/m_results”)</li>
 </ol>
-<p>Another model function is <em>brm_multiple</em> for when you have multiple datasets that you would like to run your model over. Specifically, this is helpful if you missing data and your dataset would benefit from multiple imputation. <code>brms</code> interfaces nicely with the <code>mice</code> package which allows you to pass multiple imputed datasets into your model which then combines the posteriors draws into one model result. You can then run the rest of the <code>brms</code> post-processing methods as you typically would.</p>
+<p>Another modelling function is <code>brm_multiple</code> for when you have multiple datasets that you would like to run your model over. Specifically, this is helpful if you missing data and your dataset would benefit from multiple imputation. <code>brms</code> interfaces nicely with the <code>mice</code> package which allows you to pass multiple imputed datasets into your model which then combines the posteriors draws into one model result. You can then run the rest of the <code>brms</code> post-processing methods as you typically would.</p>
 </section>
 <section id="fit-the-model" class="level3">
 <h3 class="anchored" data-anchor-id="fit-the-model">2. Fit the model</h3>
 <p><img src="images/Screen Shot 2023-11-01 at 1.01.31 PM.png" class="img-fluid"></p>
-<p>Figure 1. brms model fitting procedure (Burkner xxxx)</p>
+<p>Figure 1. brms model fitting procedure (Burkner, 2017)</p>
 </section>
 <section id="validate-computation" class="level3">
 <h3 class="anchored" data-anchor-id="validate-computation">3. Validate computation</h3>
@@ -289,23 +286,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3 class="anchored" data-anchor-id="address-computational-issues">4. Address computational issues</h3>
 <p>In general, it is helpful to start with a simple version of the model to diagnose exactly where you are running into issues. Within your argument specification in the <code>brm</code> function, you can play around with the following:</p>
 <ul>
-<li><p>If your model is taking a long time to run, try a smaller simulated dataset or a subset of your data, lower the number of <em>iter</em> from the default (which is 2000), or add in more informative priors than you had previously by adjusting the <em>prior</em> argument.</p></li>
-<li><p>If your model is having convergence issues, you can try adjusting the <em>control</em> function to be greater than the default, which is .8, up to 1.</p></li>
+<li><p>If your model is taking a long time to run, try a smaller simulated dataset or a subset of your data, lower the number of <code>iter</code> from the default (which is 2000), or add in more informative priors than you had previously by adjusting the <code>prior</code> argument.</p></li>
+<li><p>If your model is having convergence issues, you can try adjusting the <code>control</code> function to be greater than the default, which is .8, up to 1.</p></li>
 </ul>
 </section>
 <section id="evaluate-and-use-model-or-modify-the-model" class="level3">
 <h3 class="anchored" data-anchor-id="evaluate-and-use-model-or-modify-the-model">5. Evaluate and use model OR modify the model</h3>
 <p>There are a couple of functions from the <code>bayesplot</code> package that interface with <code>brms</code> to evaluate your model. Most commonly, I will use the following functions to assess my model:</p>
 <ul>
-<li><p>Posterior predictive checking is one way to see how your model results compare with your observed data. You can run a posterior predictive check with the <em>pp_check</em> and specify several different types of checks. The most common ones I use are: “dens_overlay” and “intervals_grouped” if I am running a mixed model.</p></li>
-<li><p>Trace plot for your model using <em>mcmc_plot</em> to see if there was adequate chain mixing.</p></li>
+<li><p>Posterior predictive checking is one way to see how your model results compare with your observed data. You can run a posterior predictive check with the <code>pp_check</code> and specify several different types of checks. The most common ones I use are: “dens_overlay” and “intervals_grouped” if I am running a mixed model.</p></li>
+<li><p>Trace plot for your model using <code>mcmc_plot</code> to see if there was adequate chain mixing.</p></li>
 </ul>
-<p>Another good test is leave-one-out cross-validation (LOOCV). LOOCV essentially checks the predictive ability of your model when part of the data is left out. This is helpful for understanding the influence of certain observations on your model fit. You can test on your model with <em>loo</em>.</p>
+<p>Another good test is leave-one-out cross-validation (LOOCV). LOOCV essentially checks the predictive ability of your model when part of the data is left out. This is helpful for understanding the influence of certain observations on your model fit. You can test on your model with <code>loo</code>.</p>
 </section>
 <section id="compare-models" class="level3">
 <h3 class="anchored" data-anchor-id="compare-models">6. Compare models</h3>
 <p><em>Keep all your model iterations.</em> You can think of the Bayesian workflow as a process, where anything you do in this workflow is information about your data analysis.</p>
-<p><code>brms</code> aims to make it straightforward to adjust aspects of your model (e.g., model equation, priors, number of iterations) so that you can make comparisons between them. Once you have some models that you would like to compare, you can run <em>loo_compare</em> to see had the best predictive ability or run your other evaluation checks to compare fit.</p>
+<p><code>brms</code> aims to make it straightforward to adjust aspects of your model (e.g., model equation, priors, number of iterations) so that you can make comparisons between them. Once you have some models that you would like to compare, you can run <code>loo_compare</code> to see had the best predictive ability or run your other evaluation checks to compare fit.</p>
 </section>
 </section>
 <section id="section" class="level2">

@@ -5,9 +5,11 @@ editor: visual
 
 ## Resources
 
-Burkner, Paul-Christian (2023). *brms*. https://paul-buerkner.github.io/brms/
+Bürkner, Paul-Christian. (2017). brms: An R Package for Bayesian Multilevel Models Using Stan. *Journal of Statistical Software*, *80*(1), 1--28. https://doi.org/10.18637/jss.v080.i01
 
-Gelman, Andrew, Vehtari, Aki, Simpson, Daniel, Margossian, Charles C., Carpenter, Bobb, Yao, Yuling, Kennedy, Lauren, Gabry, Johah, Burkner, Paul-Christian, and Modrak, Mark (2020). Bayesian Workflow. *arXiv.* https://doi.org/10.48550/arXiv.2011.01808
+Bürkner, Paul-Christian (2023). *brms*. https://paul-buerkner.github.io/brms/
+
+Gelman, Andrew, Vehtari, Aki, Simpson, Daniel, Margossian, Charles C., Carpenter, Bobb, Yao, Yuling, Kennedy, Lauren, Gabry, Johah, Bürkner, Paul-Christian, and Modrak, Mark (2020). Bayesian Workflow. *arXiv.* https://doi.org/10.48550/arXiv.2011.01808
 
 Kurz, A Solomon (2019). *Statistical Rethinking with brms, ggplot2, and the tidyverse*. https://bookdown.org/ajkurz/Statistical_Rethinking_recoded/
 
