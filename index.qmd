@@ -7,15 +7,13 @@ format:
 
 # Overview {.unnumbered}
 
-Welcome to this mini-workshop on brms! This reader covers the packages basics, how it works under the hood, and an example for how to use the package. 
-
-Goals: 
+Welcome to this mini-workshop on brms! The goals of this workshop and reader are to provide a resource for you to learn about:  
   
-  - Learn about brms capabilities 
+  - The package's capabilities and utility in a Bayesian workflow
   
-  - Gain an understanding of how Stan integrates with brms 
+  - How brms uses Stan 
   
-  - Run a generalized linear mixed-model with the package
+  - A generalized linear mixed-model example that uses brms
 
 No prerequisites required, however it would be helpful to have an general understanding of Bayesian statistics. 
 

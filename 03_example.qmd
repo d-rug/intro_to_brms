@@ -7,10 +7,4 @@ format: html
 
 We are going to run through an example using brms.
 
-## Load in data
 
-## Setting up the model 
-
-```{r}
-
-```

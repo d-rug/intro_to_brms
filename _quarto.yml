@@ -5,7 +5,7 @@ project:
 book:
   title: "Introduction to brms"
   author: "Tara Pozzi and Wesley Brooks"
-  date: "November 8th, 2023"
+  date: "11-08-2023"
   
   search: true
   repo-url: https://github.com/d-rug/intro_to_brms
@@ -13,7 +13,9 @@ book:
   chapters:
     - index.qmd
     - 01_intro.qmd
-    - 02_example.qmd
+    - 02_brms.qmd
+    - 03_example.qmd
+    - 04_resources.qmd
   
   sidebar:
     logo: https://github.com/d-rug/d-rug.github.io/raw/main/DRUG_final_cobalt.png
