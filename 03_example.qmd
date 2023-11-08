@@ -5,6 +5,84 @@ format: html
 
 # brms example
 
-We are going to run through an example using brms.
+We are going to run through an example using orange dataset from R. For this example, I am going to load `tidyverse` and `brms`. 
 
+```{r set up}
+library(tidyverse)
+library(brms)
+```
 
+We also need to load in the actual dataset, which in this case is built into R. 
+
+```{r load data}
+data(Orange)
+```
+
+Now we can run through the Bayesian workflow process with brms to analyze this data. The two questions I have are 1) is age correlated with tree circumference and 2) does this differ depending on the tree? 
+
+Let's walk through the steps. 
+
+## Pick an initial model 
+
+```{r model}
+## Explore shape of our data 
+ggplot(Orange, aes(circumference)) + 
+  geom_histogram()
+
+ggplot(Orange, aes(age, circumference)) + 
+  geom_smooth()
+
+## Pick a model 
+set.seed(1992)
+m1 <- brm(circumference ~  age, data = Orange) 
+```
+
+## Validate computation
+
+```{r validate}
+summary(m1)
+```
+
+The model results look good! Rhat = 1 and there is a pretty high effective sample size for the intercept and predictor. Therefore, we do not have any computational issues to address. Our model results suggest that age has a positive and significant effect on tree circumference (the 95% Bayesian credible interval is between 0.09 and 0.12). This can be interpreted as the  circumference of the tree increases by 0.11 units for each one-unit increase in age. 
+
+The intercept shows that the estimated circumference of the tree at age 0 is 17.62, but there is a wide credible interval (0.55 to 35.12), there is quite a bit of uncertaintity with this estimate.
+
+Sigma (family-specific parameter) tells us the variability in the response that is not explained by the model. In this case sigma is estimated to be 24.61 (3.12). 
+
+## Modify model
+Let's now make our model a little more complicated. The second question we are interested in exploring is tree-level differences. 
+
+```{r modify model}
+set.seed(1992)
+m2 <- brm(circumference ~ age + (1|Tree), 
+                          data = Orange,
+                          warmup = 1000, #burn in period
+                          iter = 2000, # actual samples
+                          chains = 4,
+                          prior = c(prior(normal(0,1), class = b), # specify your mean and variance, weakly informative prior
+                                    prior(normal(0,1), class = Intercept)))
+
+## Assess model 
+summary(m2)
+loo(m2) 
+
+## Posterior predictive check: https://www.monicaalexander.com/posts/2020-28-02-bayes_viz/
+pp_check(m2, type = "dens_overlay", nsamples = 100)
+pp_check(m2, type = "stat", stat = 'median', nsamples = 100) 
+pp_check(m2,type = "intervals_grouped", group = "Tree") #grouped by Tree
+
+## Error
+plot(m2) #shape should reflect the distribution of the model
+
+## Conditional effects
+conditional_effects(m2) #no group level effects without re_formula = NULL 
+```
+
+Again, model convergence and sampling efficiency look good. The estimate & error look pretty similar to m1, however the intercept is very different. We can see that the standard deviation of the Tree intercepts is quite large, 124.49, with an error of 37.55. This suggests there is quite a bit of variation between trees. 
+
+## Compare models
+Lastly, let's compare our models 
+
+```{r compare models}
+loo_compare(loo(m1), loo(m2))
+```

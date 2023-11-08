@@ -14,11 +14,13 @@ If you are new to Bayesian stats or are in need of a little brush up, check out 
 You will first need to download `brms`.
 
 ```{r install}
+#| eval: false
+
 ## Latest release from CRAN
-# install.packages("brms")
+ install.packages("brms")
 
 ## Or the latest development version from GitHub
-# devtools::install_github("paul-buerkner/brms")
+ devtools::install_github("paul-buerkner/brms")
 ```
 
 ## `brms` & the Bayesian workflow
