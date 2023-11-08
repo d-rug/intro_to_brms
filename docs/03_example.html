@@ -281,13 +281,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m2)</span>
 <span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="fu">loo</span>(m2) </span>
 <span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="do">## Posterior predictive check: https://www.monicaalexander.com/posts/2020-28-02-bayes_viz/</span></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="fu">pp_check</span>(m2, <span class="at">type =</span> <span class="st">"dens_overlay"</span>, <span class="at">nsamples =</span> <span class="dv">100</span>)</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="fu">pp_check</span>(m2, <span class="at">type =</span> <span class="st">"stat"</span>, <span class="at">stat =</span> <span class="st">'median'</span>, <span class="at">nsamples =</span> <span class="dv">100</span>) </span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="do">## Posterior predictive check: </span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="fu">pp_check</span>(m2, <span class="at">type =</span> <span class="st">"dens_overlay"</span>, <span class="at">nsamples =</span> <span class="dv">100</span>) <span class="co"># observed data density and the posterior predictive distribution, nsamples is how many samples from the posterior distribution</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="fu">pp_check</span>(m2, <span class="at">type =</span> <span class="st">"stat"</span>, <span class="at">stat =</span> <span class="st">'median'</span>, <span class="at">nsamples =</span> <span class="dv">100</span>) <span class="co"># calc median of the posterior predictive distribution</span></span>
 <span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="fu">pp_check</span>(m2,<span class="at">type =</span> <span class="st">"intervals_grouped"</span>, <span class="at">group =</span> <span class="st">"Tree"</span>) <span class="co">#grouped by Tree</span></span>
 <span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="do">## Error</span></span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(m2) <span class="co">#shape should reflect the distribution of the model</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="do">## Trace plot</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="fu">mcmc_plot</span>(m2) </span>
 <span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="do">## Conditional effects</span></span>
 <span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="fu">conditional_effects</span>(m2) <span class="co">#no group level effects without re_formula = NULL </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>

@@ -71,13 +71,13 @@ m2 <- brm(circumference ~ age + (1|Tree),
 summary(m2)
 loo(m2) 
 
-## Posterior predictive check: https://www.monicaalexander.com/posts/2020-28-02-bayes_viz/
-pp_check(m2, type = "dens_overlay", nsamples = 100)
-pp_check(m2, type = "stat", stat = 'median', nsamples = 100) 
+## Posterior predictive check: 
+pp_check(m2, type = "dens_overlay", nsamples = 100) # observed data density and the posterior predictive distribution, nsamples is how many samples from the posterior distribution
+pp_check(m2, type = "stat", stat = 'median', nsamples = 100) # calc median of the posterior predictive distribution
 pp_check(m2,type = "intervals_grouped", group = "Tree") #grouped by Tree
 
-## Error
-plot(m2) #shape should reflect the distribution of the model
+## Trace plot
+mcmc_plot(m2) 
 
 ## Conditional effects
 conditional_effects(m2) #no group level effects without re_formula = NULL 

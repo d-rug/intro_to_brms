@@ -5,6 +5,8 @@ editor: visual
 
 ## Resources
 
+Alexander, Monica. (2020). Visualizing the Bayesian Workflow in R. https://www.monicaalexander.com/posts/2020-28-02-bayes_viz/
+
 Bürkner, Paul-Christian. (2017). brms: An R Package for Bayesian Multilevel Models Using Stan. *Journal of Statistical Software*, *80*(1), 1--28. https://doi.org/10.18637/jss.v080.i01
 
 Bürkner, Paul-Christian (2023). *brms*. https://paul-buerkner.github.io/brms/
