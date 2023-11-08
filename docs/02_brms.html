@@ -261,7 +261,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ol>
 <p>Other arguments you might want to specify:</p>
 <ol type="1">
-<li><code>prior</code>: specify the prior distributions you would like for your population-level and group-level variables. You are also not restricted to just normal distributions and specify different types including uniform, Cauchy, Gamma, etc. If you do not specify your priors, the model assumes an uninformed flat prior distribution [double check this].</li>
+<li><code>prior</code>: specify the prior distributions you would like for your population-level and group-level variables. You are also not restricted to just normal distributions and specify different types including uniform, Cauchy, Gamma, etc. If you do not specify your priors, the model assumes a prior with a student_t distribution.</li>
 <li><code>warmup</code>: number of burn in iterations to help model find stable sampling space (default is iter/2)</li>
 <li><code>iter:</code> number of total iterations per chain (default is 2000)</li>
 <li><code>chains</code>: number of markov chains you would like to run (default is 4)</li>

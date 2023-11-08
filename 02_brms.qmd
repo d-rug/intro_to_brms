@@ -37,7 +37,7 @@ Some of the core arguments you will need to specify are:
 
 Other arguments you might want to specify:
 
-1.  `prior`: specify the prior distributions you would like for your population-level and group-level variables. You are also not restricted to just normal distributions and specify different types including uniform, Cauchy, Gamma, etc. If you do not specify your priors, the model assumes an uninformed flat prior distribution \[double check this\].
+1.  `prior`: specify the prior distributions you would like for your population-level and group-level variables. You are also not restricted to just normal distributions and specify different types including uniform, Cauchy, Gamma, etc. If you do not specify your priors, the model assumes a prior with a student_t distribution.
 2.  `warmup`: number of burn in iterations to help model find stable sampling space (default is iter/2)
 3.  `iter:` number of total iterations per chain (default is 2000)
 4.  `chains`: number of markov chains you would like to run (default is 4)
