@@ -8,6 +8,7 @@ format: html
 We are going to run through an example using orange dataset from R. For this example, I am going to load `tidyverse` and `brms`. 
 
 ```{r set up}
+#| eval: false
 library(tidyverse)
 library(brms)
 ```
@@ -15,6 +16,7 @@ library(brms)
 We also need to load in the actual dataset, which in this case is built into R. 
 
 ```{r load data}
+#| eval: false
 data(Orange)
 ```
 
@@ -25,6 +27,7 @@ Let's walk through the steps.
 ## Pick an initial model 
 
 ```{r model}
+#| eval: false
 ## Explore shape of our data 
 ggplot(Orange, aes(circumference)) + 
   geom_histogram()
@@ -40,6 +43,7 @@ m1 <- brm(circumference ~  age, data = Orange)
 ## Validate computation
 
 ```{r validate}
+#| eval: false
 summary(m1)
 ```
 
@@ -53,6 +57,7 @@ Sigma (family-specific parameter) tells us the variability in the response that 
 Let's now make our model a little more complicated. The second question we are interested in exploring is tree-level differences. 
 
 ```{r modify model}
+#| eval: false
 set.seed(1992)
 m2 <- brm(circumference ~ age + (1|Tree), 
                           data = Orange,
@@ -84,5 +89,6 @@ Again, model convergence and sampling efficiency look good. The estimate & error
 Lastly, let's compare our models 
 
 ```{r compare models}
+#| eval: false
 loo_compare(loo(m1), loo(m2))
 ```

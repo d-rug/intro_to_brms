@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Introduction to brms - 4&nbsp; Example</title>
+<title>Introduction to brms - 3&nbsp; brms in application</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -93,8 +93,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./04_resources.html" rel="next">
-<link href="./02_brms.html" rel="prev">
+<link href="./03_example.html" rel="next">
+<link href="./01_intro.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -133,7 +133,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-title">Example</span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-title">brms in application</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -175,12 +175,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02_brms.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">brms in application</span></a>
+  <a href="./02_brms.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">brms in application</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03_example.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Example</span></a>
+  <a href="./03_example.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Example</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -197,13 +197,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#brms-example" id="toc-brms-example" class="nav-link active" data-scroll-target="#brms-example">brms example</a>
+  <li><a href="#brms---a-package-that-can-help-you-throughout-your-bayesian-workflow" id="toc-brms---a-package-that-can-help-you-throughout-your-bayesian-workflow" class="nav-link active" data-scroll-target="#brms---a-package-that-can-help-you-throughout-your-bayesian-workflow">brms - a package that can help you throughout your Bayesian workflow!</a></li>
+  <li><a href="#install-brms" id="toc-install-brms" class="nav-link" data-scroll-target="#install-brms">Install <code>brms</code></a></li>
+  <li><a href="#brms-the-bayesian-workflow" id="toc-brms-the-bayesian-workflow" class="nav-link" data-scroll-target="#brms-the-bayesian-workflow"><code>brms</code> &amp; the Bayesian workflow</a>
   <ul class="collapse">
-  <li><a href="#pick-an-initial-model" id="toc-pick-an-initial-model" class="nav-link" data-scroll-target="#pick-an-initial-model">Pick an initial model</a></li>
-  <li><a href="#validate-computation" id="toc-validate-computation" class="nav-link" data-scroll-target="#validate-computation">Validate computation</a></li>
-  <li><a href="#modify-model" id="toc-modify-model" class="nav-link" data-scroll-target="#modify-model">Modify model</a></li>
-  <li><a href="#compare-models" id="toc-compare-models" class="nav-link" data-scroll-target="#compare-models">Compare models</a></li>
+  <li><a href="#pick-an-initial-model" id="toc-pick-an-initial-model" class="nav-link" data-scroll-target="#pick-an-initial-model">1. Pick an initial model</a></li>
+  <li><a href="#fit-the-model" id="toc-fit-the-model" class="nav-link" data-scroll-target="#fit-the-model">2. Fit the model</a></li>
+  <li><a href="#validate-computation" id="toc-validate-computation" class="nav-link" data-scroll-target="#validate-computation">3. Validate computation</a></li>
+  <li><a href="#address-computational-issues" id="toc-address-computational-issues" class="nav-link" data-scroll-target="#address-computational-issues">4. Address computational issues</a></li>
+  <li><a href="#evaluate-and-use-model-or-modify-the-model" id="toc-evaluate-and-use-model-or-modify-the-model" class="nav-link" data-scroll-target="#evaluate-and-use-model-or-modify-the-model">5. Evaluate and use model OR modify the model</a></li>
+  <li><a href="#compare-models" id="toc-compare-models" class="nav-link" data-scroll-target="#compare-models">6. Compare models</a></li>
   </ul></li>
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a></li>
   </ul>
 </nav>
     </div>
@@ -212,7 +217,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-title">Example</span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-title">brms in application</span></h1>
 </div>
 
 
@@ -227,82 +232,83 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
-<section id="brms-example" class="level1">
-<h1>brms example</h1>
-<p>We are going to run through an example using orange dataset from R. For this example, I am going to load <code>tidyverse</code> and <code>brms</code>.</p>
+<section id="brms---a-package-that-can-help-you-throughout-your-bayesian-workflow" class="level2">
+<h2 class="anchored" data-anchor-id="brms---a-package-that-can-help-you-throughout-your-bayesian-workflow">brms - a package that can help you throughout your Bayesian workflow!</h2>
+<p>brms (short for Bayesian Regression Models using ‘Stan’) is a package that allows for user friendly specification of Bayesian models. The package was developed by Paul-Christian Bürkner. If you are mostly familiar with linear regression of the frequentist sort, you are in luck: the formula syntax in brms is <em>very</em> similar to that in lme4! The brms <a href="https://cran.r-project.org/web/packages/brms/readme/README.html">README</a> file links to several resources including extensive package documentation, vignettes, and forum discussions</p>
+<p>If you are new to Bayesian stats or are in need of a little brush up, check out this <a href="https://www.nature.com/articles/s43586-020-00001-2">Bayesian Primer</a> by Van de Schoot et al.&nbsp;(2021).</p>
+</section>
+<section id="install-brms" class="level2">
+<h2 class="anchored" data-anchor-id="install-brms">Install <code>brms</code></h2>
+<p>You will first need to download <code>brms</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(brms)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>We also need to load in the actual dataset, which in this case is built into R.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(Orange)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Now we can run through the Bayesian workflow process with brms to analyze this data. The two questions I have are 1) is age correlated with tree circumference and 2) does this differ depending on the tree?</p>
-<p>Let’s walk through the steps.</p>
-<section id="pick-an-initial-model" class="level2">
-<h2 class="anchored" data-anchor-id="pick-an-initial-model">Pick an initial model</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Explore shape of our data </span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(Orange, <span class="fu">aes</span>(circumference)) <span class="sc">+</span> </span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(Orange, <span class="fu">aes</span>(age, circumference)) <span class="sc">+</span> </span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="do">## Pick a model </span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1992</span>)</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">brm</span>(circumference <span class="sc">~</span>  age, <span class="at">data =</span> Orange) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Latest release from CRAN</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("brms")</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Or the latest development version from GitHub</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># devtools::install_github("paul-buerkner/brms")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="validate-computation" class="level2">
-<h2 class="anchored" data-anchor-id="validate-computation">Validate computation</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>The model results look good! Rhat = 1 and there is a pretty high effective sample size for the intercept and predictor. Therefore, we do not have any computational issues to address. Our model results suggest that age has a positive and significant effect on tree circumference (the 95% Bayesian credible interval is between 0.09 and 0.12). This can be interpreted as the circumference of the tree increases by 0.11 units for each one-unit increase in age.</p>
-<p>The intercept shows that the estimated circumference of the tree at age 0 is 17.62, but there is a wide credible interval (0.55 to 35.12), there is quite a bit of uncertaintity with this estimate.</p>
-<p>Sigma (family-specific parameter) tells us the variability in the response that is not explained by the model. In this case sigma is estimated to be 24.61 (3.12).</p>
+<section id="brms-the-bayesian-workflow" class="level2">
+<h2 class="anchored" data-anchor-id="brms-the-bayesian-workflow"><code>brms</code> &amp; the Bayesian workflow</h2>
+<section id="pick-an-initial-model" class="level3">
+<h3 class="anchored" data-anchor-id="pick-an-initial-model">1. Pick an initial model</h3>
+<p><code>brm</code> is the modelling function where you can specify anything that may be relevant to your model (e.g., the response distribution, priors, group-level factors, number of chains, iterations, etc.).</p>
+<p>Some of the core arguments you will need to specify are:</p>
+<ol type="1">
+<li><code>formula</code>: this is where you specify your response and predictor variables of interest (e.g., y ~ x). This is also where you will specify your random effects (e.g., y ~ x1 + (1|x2)</li>
+<li><code>data</code>: specify your dataframe</li>
+<li><code>family</code>: brms can handle a wide range of response distributions linear, count data, survival, response times, ordinal, zero-inflated, self-defined mixture models and much much more! This is also where you specify your <code>link</code> argument</li>
+</ol>
+<p>Other arguments you might want to specify:</p>
+<ol type="1">
+<li><code>prior</code>: specify the prior distributions you would like for your population-level and group-level variables. You are also not restricted to just normal distributions and specify different types including uniform, Cauchy, Gamma, etc. If you do not specify your priors, the model assumes an uninformed flat prior distribution [double check this].</li>
+<li><code>warmup</code>: number of burn in iterations to help model find stable sampling space (default is iter/2)</li>
+<li><code>iter:</code> number of total iterations per chain (default is 2000)</li>
+<li><code>chains</code>: number of markov chains you would like to run (default is 4)</li>
+<li><code>cores</code>: number of cores to use when chains are running (default is 1), but you may want to specify more if your computer has capability. You can check how many cores you have by using parallel::detectCores()</li>
+<li><code>control:</code> adjust the sampling behavior of the model. I’ve mostly used this to help lower the number of divergent transitions (e.g., control = list(adapt_delta(x=.9)))</li>
+<li><code>file:</code> you can tell the model where to save its results (e.g., file = paste0(model,“/m_results”)</li>
+</ol>
+<p>Another modelling function is <code>brm_multiple</code> for when you have multiple datasets that you would like to run your model over. Specifically, this is helpful if you missing data and your dataset would benefit from multiple imputation. <code>brms</code> interfaces nicely with the <code>mice</code> package which allows you to pass multiple imputed datasets into your model which then combines the posteriors draws into one model result. You can then run the rest of the <code>brms</code> post-processing methods as you typically would.</p>
 </section>
-<section id="modify-model" class="level2">
-<h2 class="anchored" data-anchor-id="modify-model">Modify model</h2>
-<p>Let’s now make our model a little more complicated. The second question we are interested in exploring is tree-level differences.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1992</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">brm</span>(circumference <span class="sc">~</span> age <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>Tree), </span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">data =</span> Orange,</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>                          <span class="at">warmup =</span> <span class="dv">1000</span>, <span class="co">#burn in period</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>                          <span class="at">iter =</span> <span class="dv">2000</span>, <span class="co"># actual samples</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>                          <span class="at">chains =</span> <span class="dv">4</span>,</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>                          <span class="at">prior =</span> <span class="fu">c</span>(<span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="at">class =</span> b), <span class="co"># specify your mean and variance, weakly informative prior</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>                                    <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="at">class =</span> Intercept)))</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="do">## Assess model </span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m2)</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="fu">loo</span>(m2) </span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="do">## Posterior predictive check: https://www.monicaalexander.com/posts/2020-28-02-bayes_viz/</span></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="fu">pp_check</span>(m2, <span class="at">type =</span> <span class="st">"dens_overlay"</span>, <span class="at">nsamples =</span> <span class="dv">100</span>)</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="fu">pp_check</span>(m2, <span class="at">type =</span> <span class="st">"stat"</span>, <span class="at">stat =</span> <span class="st">'median'</span>, <span class="at">nsamples =</span> <span class="dv">100</span>) </span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="fu">pp_check</span>(m2,<span class="at">type =</span> <span class="st">"intervals_grouped"</span>, <span class="at">group =</span> <span class="st">"Tree"</span>) <span class="co">#grouped by Tree</span></span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="do">## Error</span></span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(m2) <span class="co">#shape should reflect the distribution of the model</span></span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="do">## Conditional effects</span></span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="fu">conditional_effects</span>(m2) <span class="co">#no group level effects without re_formula = NULL </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Again, model convergence and sampling efficiency look good. The estimate &amp; error look pretty similar to m1, however the intercept is very different. We can see that the standard deviation of the Tree intercepts is quite large, 124.49, with an error of 37.55. This suggests there is quite a bit of variation between trees.</p>
+<section id="fit-the-model" class="level3">
+<h3 class="anchored" data-anchor-id="fit-the-model">2. Fit the model</h3>
+<p><img src="images/Screen Shot 2023-11-01 at 1.01.31 PM.png" class="img-fluid"></p>
+<p>Figure 1. brms model fitting procedure (Burkner, 2017)</p>
 </section>
-<section id="compare-models" class="level2">
-<h2 class="anchored" data-anchor-id="compare-models">Compare models</h2>
-<p>Lastly, let’s compare our models</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">loo_compare</span>(<span class="fu">loo</span>(m1), <span class="fu">loo</span>(m2))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<section id="validate-computation" class="level3">
+<h3 class="anchored" data-anchor-id="validate-computation">3. Validate computation</h3>
+<p>This part of the workflow stresses the use of simulated data to make sure the model takes a reasonable length of time to run &amp; passes convergence diagnostics.</p>
+<p>Check out your model results: the <code>summary</code> function will spit out key model information like the family, formula, data and number of observations used in the model, number of samples, WAIC score, population-level effects and group-level effects (if you have any) with their respective estimates, error, 95% confidence interval, effective sample size, and Rhat score.</p>
+<p>Effective sample size and Rhat score are two default metrics of convergence. If your effective sample size is much lower than your number of iterations there could be efficiency issues in your chains. Secondly, if your Rhat score is &gt; 1, then this indicates some convergence issues and therefore may not have reliable results.</p>
+</section>
+<section id="address-computational-issues" class="level3">
+<h3 class="anchored" data-anchor-id="address-computational-issues">4. Address computational issues</h3>
+<p>In general, it is helpful to start with a simple version of the model to diagnose exactly where you are running into issues. Within your argument specification in the <code>brm</code> function, you can play around with the following:</p>
+<ul>
+<li><p>If your model is taking a long time to run, try a smaller simulated dataset or a subset of your data, lower the number of <code>iter</code> from the default (which is 2000), or add in more informative priors than you had previously by adjusting the <code>prior</code> argument.</p></li>
+<li><p>If your model is having convergence issues, you can try adjusting the <code>control</code> function to be greater than the default, which is .8, up to 1.</p></li>
+</ul>
+</section>
+<section id="evaluate-and-use-model-or-modify-the-model" class="level3">
+<h3 class="anchored" data-anchor-id="evaluate-and-use-model-or-modify-the-model">5. Evaluate and use model OR modify the model</h3>
+<p>There are a couple of functions from the <code>bayesplot</code> package that interface with <code>brms</code> to evaluate your model. Most commonly, I will use the following functions to assess my model:</p>
+<ul>
+<li><p>Posterior predictive checking is one way to see how your model results compare with your observed data. You can run a posterior predictive check with the <code>pp_check</code> and specify several different types of checks. The most common ones I use are: “dens_overlay” and “intervals_grouped” if I am running a mixed model.</p></li>
+<li><p>Trace plot for your model using <code>mcmc_plot</code> to see if there was adequate chain mixing.</p></li>
+</ul>
+<p>Another good test is leave-one-out cross-validation (LOOCV). LOOCV essentially checks the predictive ability of your model when part of the data is left out. This is helpful for understanding the influence of certain observations on your model fit. You can test on your model with <code>loo</code>.</p>
+</section>
+<section id="compare-models" class="level3">
+<h3 class="anchored" data-anchor-id="compare-models">6. Compare models</h3>
+<p><em>Keep all your model iterations.</em> You can think of the Bayesian workflow as a process, where anything you do in this workflow is information about your data analysis.</p>
+<p><code>brms</code> aims to make it straightforward to adjust aspects of your model (e.g., model equation, priors, number of iterations) so that you can make comparisons between them. Once you have some models that you would like to compare, you can run <code>loo_compare</code> to see had the best predictive ability or run your other evaluation checks to compare fit.</p>
+</section>
+</section>
+<section id="section" class="level2">
+<h2 class="anchored" data-anchor-id="section"></h2>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -441,13 +447,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./02_brms.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">brms in application</span></span>
+      <a href="./01_intro.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Background</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./04_resources.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-title">Resources</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./03_example.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-title">Example</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
